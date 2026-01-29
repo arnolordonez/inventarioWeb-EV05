@@ -1,0 +1,220 @@
+﻿@{
+    ViewData["Title"] = "Catálogos - Móvil";
+    var nombreUsuario = ViewBag.NombreUsuario ?? "Usuario";
+}
+
+<!-- Menú lateral -->
+<div id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+        <h2>Indomable</h2>
+        <span class="close-btn" onclick="toggleSidebar()">×</span>
+    </div>
+    <ul class="sidebar-menu">
+        <li><a href="/Auto/Dashboard">🏠 Inicio</a></li>
+        <li><a href="/Productos/Index">📦 Productos</a></li>
+        <li><a href="/Clientes/Index">👥 Clientes</a></li>
+        <li><a href="/Ventas/Index">🛒 Ventas</a></li>
+        <li><a href="/Abonos/Index">💰 Abonos</a></li>
+        <li><a href="/Reportes/Index">📊 Reportes</a></li>
+        <li class="active"><a href="/Catalogos/Index">📂 Catálogos</a></li>
+        <li><a href="/Home/Index">🚪 Cerrar Sesión</a></li>
+    </ul>
+</div>
+
+<!-- Contenedor principal -->
+<div class="main-container">
+    <!-- Encabezado -->
+    <header class="header">
+        <span class="menu-btn" onclick="toggleSidebar()">☰</span>
+        <h1>Catálogos</h1>
+    </header>
+
+    <!-- Contenido principal -->
+    <div class="content">
+        <div class="card">
+            <div class="card-body text-center">
+                <h2>📂 Gestión de Catálogos</h2>
+                <p>Administra la información de referencia del sistema.</p>
+
+                <!-- Submenú de acciones -->
+                <div class="submenu">
+                    <button class="submenu-btn crear" onclick="alert('Crear nuevo catálogo')">➕ Crear</button>
+                    <button class="submenu-btn editar" onclick="alert('Editar un catálogo existente')">✏️ Editar</button>
+                    <button class="submenu-btn eliminar" onclick="alert('Eliminar catálogo seleccionado')">🗑️ Eliminar</button>
+                </div>
+
+                <!-- Sección de información -->
+                <div class="info-section mt-4">
+                    <p>En esta sección podrás crear, editar o eliminar los catálogos que definen las categorías de productos, tipos de clientes y más elementos base del sistema.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="footer">
+        <p>© 2025 Indomable - Sistema de Inventario Móvil</p>
+    </footer>
+</div>
+
+<!-- Estilos -->
+<style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background-color: #f8fafc;
+        color: #333;
+    }
+
+    .header {
+        background-color: #1E3A8A;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .menu-btn {
+        position: absolute;
+        left: 20px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .sidebar {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #1E3A8A;
+        overflow-x: hidden;
+        transition: 0.3s;
+        z-index: 1200;
+        padding-top: 60px;
+    }
+
+    .sidebar.open {
+        width: 250px;
+    }
+
+    .sidebar-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #1E3A8A;
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .sidebar-menu {
+        list-style: none;
+        padding: 0;
+        margin-top: 80px;
+    }
+
+    .sidebar-menu li {
+        padding: 12px 20px;
+    }
+
+    .sidebar-menu a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        font-size: 18px;
+        transition: background 0.2s;
+    }
+
+    .sidebar-menu a:hover,
+    .sidebar-menu .active a {
+        background-color: #2563EB;
+        border-radius: 8px;
+    }
+
+    .main-container {
+        transition: margin-left 0.3s ease;
+    }
+
+    .content {
+        padding: 20px;
+        margin-top: 10px;
+    }
+
+    .card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        padding: 20px;
+    }
+
+    .submenu {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+
+    .submenu-btn {
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.2s;
+        width: 120px;
+    }
+
+    .submenu-btn.crear { background-color: #16A34A; }
+    .submenu-btn.crear:hover { background-color: #22C55E; }
+
+    .submenu-btn.editar { background-color: #2563EB; }
+    .submenu-btn.editar:hover { background-color: #3B82F6; }
+
+    .submenu-btn.eliminar { background-color: #DC2626; }
+    .submenu-btn.eliminar:hover { background-color: #EF4444; }
+
+    .info-section {
+        background-color: #EEF2FF;
+        padding: 15px;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .footer {
+        background-color: #1E3A8A;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        margin-top: 30px;
+    }
+
+    /* 📱 Estilos responsive */
+    @@media (max-width: 768px) {
+        .sidebar.open { width: 200px; }
+        .submenu { flex-direction: column; align-items: center; }
+        .submenu-btn { width: 80%; }
+    }
+</style>
+
+<!-- Script -->
+<script>
+    function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("open");
+    }
+</script>
+

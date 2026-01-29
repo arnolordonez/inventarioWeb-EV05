@@ -1,0 +1,81 @@
+﻿@model InventarioWEB.Models.Producto
+
+@{
+    ViewData["Title"] = "Detalles del Producto";
+}
+
+<h2 class="text-center text-primary fw-bold mb-4">🔍 Detalles del Producto</h2>
+
+<div class="card shadow-lg p-4 rounded-3 mx-auto" style="max-width: 650px;">
+    <dl class="row mb-0">
+
+        <!-- Código -->
+        <dt class="col-sm-4 fw-bold text-secondary">Código</dt>
+        <dd class="col-sm-8">@Model.ID_Producto</dd>
+
+        <!-- Nombre -->
+        <dt class="col-sm-4 fw-bold text-secondary">Nombre</dt>
+        <dd class="col-sm-8">@Model.Nombre</dd>
+
+        <!-- Referencia -->
+        <dt class="col-sm-4 fw-bold text-secondary">Referencia</dt>
+        <dd class="col-sm-8">@Model.Referencia?.DescripReferencia ?? "—"</dd>
+
+        <!-- Género -->
+        <dt class="col-sm-4 fw-bold text-secondary">Género</dt>
+        <dd class="col-sm-8">@Model.Referencia?.Genero?.DescripGenero ?? "—"</dd>
+
+        <!-- Talla -->
+        <dt class="col-sm-4 fw-bold text-secondary">Talla</dt>
+        <dd class="col-sm-8">@Model.Talla?.DescripTalla ?? "—"</dd>
+
+        <!-- Tela -->
+        <dt class="col-sm-4 fw-bold text-secondary">Tela</dt>
+        <dd class="col-sm-8">@Model.Tela?.DescripTela ?? "—"</dd>
+
+        <!-- Color -->
+        <dt class="col-sm-4 fw-bold text-secondary">Color</dt>
+        <dd class="col-sm-8">@Model.Color?.Nombre ?? "—"</dd>
+
+        <!-- Precio -->
+        <dt class="col-sm-4 fw-bold text-secondary">Precio</dt>
+        <dd class="col-sm-8">@Model.Precio.ToString("C")</dd>
+
+        <!-- IVA -->
+        <dt class="col-sm-4 fw-bold text-secondary">IVA</dt>
+        <dd class="col-sm-8">@($"{Model.IVA_Porcentaje:0.##} %")</dd>
+
+        <!-- Stock -->
+        <dt class="col-sm-4 fw-bold text-secondary">Stock disponible</dt>
+        <dd class="col-sm-8">@Model.Stock</dd>
+
+        <!-- Estado -->
+        <dt class="col-sm-4 fw-bold text-secondary">Estado</dt>
+        <dd class="col-sm-8">
+            @if (Model.Activo)
+            {
+                    <span class="badge bg-success">Activo</span>
+            }
+            else
+            {
+                    <span class="badge bg-danger">Inactivo</span>
+            }
+        </dd>
+
+    </dl>
+
+    <div class="text-center mt-4">
+
+        <!-- Botón Editar -->
+        <a asp-action="Editar" asp-route-id="@Model.ID_Producto"
+           class="btn btn-warning me-2">
+            ✏️ Editar
+        </a>
+
+        <!-- Volver -->
+        <a asp-action="Index" class="btn btn-secondary">
+            ⬅ Volver al listado
+        </a>
+
+    </div>
+</div>

@@ -1,0 +1,109 @@
+﻿@model InventarioWEB.Models.Cliente
+@{
+    ViewData["Title"] = "Crear Cliente";
+}
+
+<h4>Crear Cliente</h4>
+
+<form asp-action="Create" method="post">
+    <div class="row g-3">
+
+        <!-- Cédula -->
+        <div class="col-md-4">
+            <label asp-for="ID_Cliente" class="form-label"></label>
+            <input asp-for="ID_Cliente" class="form-control" type="number" min="100000" step="1" />
+            <span asp-validation-for="ID_Cliente" class="text-danger"></span>
+        </div>
+
+        <!-- Nombre -->
+        <div class="col-md-4">
+            <label asp-for="Nombre" class="form-label"></label>
+            <input asp-for="Nombre" class="form-control" />
+            <span asp-validation-for="Nombre" class="text-danger"></span>
+        </div>
+
+        <!-- Apellido -->
+        <div class="col-md-4">
+            <label asp-for="Apellido" class="form-label"></label>
+            <input asp-for="Apellido" class="form-control" />
+            <span asp-validation-for="Apellido" class="text-danger"></span>
+        </div>
+
+        <!-- Teléfono -->
+        <div class="col-md-4">
+            <label asp-for="Telefono" class="form-label"></label>
+            <input asp-for="Telefono" class="form-control" type="tel" />
+            <span asp-validation-for="Telefono" class="text-danger"></span>
+        </div>
+
+        <!-- Correo -->
+        <div class="col-md-4">
+            <label asp-for="Correo" class="form-label"></label>
+            <input asp-for="Correo" class="form-control" type="email" />
+            <span asp-validation-for="Correo" class="text-danger"></span>
+        </div>
+
+        <!-- Dirección -->
+        <div class="col-md-4">
+            <label asp-for="Direccion" class="form-label"></label>
+            <input asp-for="Direccion" class="form-control" />
+            <span asp-validation-for="Direccion" class="text-danger"></span>
+        </div>
+
+        <!-- Ciudad / Municipio -->
+        <div class="col-md-4">
+            <label asp-for="CiudadMunicipio" class="form-label"></label>
+            <input asp-for="CiudadMunicipio" class="form-control" />
+            <span asp-validation-for="CiudadMunicipio" class="text-danger"></span>
+        </div>
+
+        <!-- Tipo de Cliente -->
+        <div class="col-md-4">
+            <label asp-for="TipoCliente" class="form-label"></label>
+            <select asp-for="TipoCliente" asp-items="ViewBag.TiposItems" class="form-select" id="tipoClienteSelect"></select>
+            <span asp-validation-for="TipoCliente" class="text-danger"></span>
+        </div>
+
+        <!-- VIP -->
+        <div class="col-md-2">
+            <label class="form-label">VIP</label>
+            <input type="text" id="vipText" class="form-control" readonly />
+            <input asp-for="VIP" type="hidden" id="VIP" />
+        </div>
+
+        <!-- Observaciones -->
+        <div class="col-12">
+            <label asp-for="Observaciones" class="form-label"></label>
+            <textarea asp-for="Observaciones" class="form-control"></textarea>
+        </div>
+
+        <!-- Botones -->
+        <div class="col-12 d-flex justify-content-end">
+            <a asp-action="Index" class="btn btn-outline-secondary me-2">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+
+    </div>
+</form>
+
+@section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+        <script>
+            (function () {
+                const tipo = document.getElementById('tipoClienteSelect');
+                const vipText = document.getElementById('vipText');
+                const vipHidden = document.getElementById('VIP');
+
+                function actualizarVIP() {
+                    const isVIP = tipo.value === 'Mayorista';
+                    vipText.value = isVIP ? 'SI' : 'NO';
+                    vipHidden.value = isVIP;
+                }
+
+                if (tipo) {
+                    tipo.addEventListener('change', actualizarVIP);
+                    actualizarVIP();
+                }
+            })();
+        </script>
+}

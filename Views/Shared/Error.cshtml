@@ -1,0 +1,40 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<div class="container mt-5 text-center">
+    <!-- Título principal del error -->
+    <h1 class="text-danger fw-bold">¡Ups! Algo salió mal 😕</h1>
+
+    <!-- Descripción breve del error -->
+    <p class="lead mb-4">Ha ocurrido un error al procesar tu solicitud. Por favor, intenta nuevamente.</p>
+
+    <!-- Mostrar el ID de la solicitud solo si está disponible -->
+    @if (Model.ShowRequestId)
+    {
+            <div class="alert alert-secondary d-inline-block p-3">
+                <strong>ID de solicitud:</strong> <code>@Model.RequestId</code>
+            </div>
+    }
+
+    <hr class="my-4" />
+
+    <!-- Información adicional para entornos de desarrollo -->
+    <h5 class="text-muted">Modo de desarrollo</h5>
+    <p class="text-secondary">
+        Si estás desarrollando, cambia el entorno a <strong>Development</strong> para ver más detalles sobre este error.
+    </p>
+    <p class="text-secondary">
+        Esto se puede hacer estableciendo la variable de entorno:
+        <br />
+        <code>ASPNETCORE_ENVIRONMENT=Development</code>
+    </p>
+
+    <hr class="my-4" />
+
+    <!-- Botón para regresar a la página de inicio -->
+    <a class="btn btn-primary btn-lg mt-3" href="@Url.Action("Index", "Home")">
+        <i class="bi bi-house-door"></i> Volver al inicio
+    </a>
+</div>

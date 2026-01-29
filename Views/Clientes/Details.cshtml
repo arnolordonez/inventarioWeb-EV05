@@ -1,0 +1,18 @@
+﻿@model InventarioWEB.Models.Cliente
+<h4>Detalle de cliente</h4>
+
+<div class="card p-3">
+    <dl class="row">
+        <dt class="col-sm-3">Cédula</dt><dd class="col-sm-9">@Model.ID_Cliente</dd>
+        <dt class="col-sm-3">Nombre</dt><dd class="col-sm-9">@Model.Nombre</dd>
+        <dt class="col-sm-3">Apellido</dt><dd class="col-sm-9">@Model.Apellido</dd>
+        <dt class="col-sm-3">Correo</dt><dd class="col-sm-9">@Model.Correo</dd>
+        <dt class="col-sm-3">Teléfono</dt><dd class="col-sm-9">@Model.Telefono</dd>
+        <dt class="col-sm-3">Tipo</dt><dd class="col-sm-9">@Model.TipoCliente</dd>
+        <dt class="col-sm-3">VIP</dt><dd class="col-sm-9">@(Model.VIP ? "SI" : "NO")</dd>
+        <dt class="col-sm-3">Activo</dt><dd class="col-sm-9">@(Model.Activo ? "SI" : "NO")</dd>
+        <dt class="col-sm-3">Observaciones</dt><dd class="col-sm-9">@Model.Observaciones</dd>
+    </dl>
+    <a asp-action="Edit" asp-route-id="@Model.ID_Cliente" class="btn btn-primary">Editar</a>
+    <a asp-action="Index" class="btn btn-outline-secondary">Volver</a>
+</div>

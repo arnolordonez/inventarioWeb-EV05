@@ -1,0 +1,80 @@
+﻿@model InventarioWEB.Models.Producto
+
+@{
+    ViewData["Title"] = "Eliminar Producto";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4 text-danger fw-bold">
+        🗑️ Eliminar Producto
+    </h2>
+
+    <div class="alert alert-warning shadow-sm text-center">
+        <p>¿Estás seguro de que deseas eliminar el siguiente producto?</p>
+    </div>
+
+    <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+
+            <h5 class="card-title">@Model.Nombre</h5>
+
+            <p class="card-text"><strong>Código:</strong> @Model.ID_Producto</p>
+
+            <p class="card-text"><strong>Referencia:</strong> 
+                @(Model.Referencia?.DescripReferencia ?? "—")
+            </p>
+
+            <p class="card-text"><strong>Género:</strong> 
+                @(Model.Referencia?.Genero?.DescripGenero ?? "—")
+            </p>
+
+            <p class="card-text"><strong>Talla:</strong> 
+                @(Model.Talla?.DescripTalla ?? "—")
+            </p>
+
+            <p class="card-text"><strong>Tela:</strong> 
+                @(Model.Tela?.DescripTela ?? "—")
+            </p>
+
+            <p class="card-text"><strong>Color:</strong> 
+                @(Model.Color?.Nombre ?? "Sin color")
+            </p>
+
+            <p class="card-text"><strong>Precio:</strong> 
+                @Model.Precio.ToString("C")
+            </p>
+
+            <p class="card-text"><strong>IVA (%):</strong> 
+                @Model.IVA_Porcentaje.ToString("0.##")
+            </p>
+
+            <p class="card-text"><strong>Stock:</strong> @Model.Stock</p>
+
+            <p class="card-text"><strong>Estado:</strong>
+                @if (Model.Activo)
+                {
+                        <span class="badge bg-success">Activo</span>
+                }
+                else
+                {
+                        <span class="badge bg-secondary">Inactivo</span>
+                }
+            </p>
+
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center gap-2">
+        <form asp-controller="Productos" asp-action="EliminarConfirmado" method="post">
+            <input type="hidden" asp-for="ID_Producto" />
+            <button type="submit" class="btn btn-danger shadow-sm">
+                <i class="bi bi-trash"></i> Eliminar
+            </button>
+        </form>
+
+        <a asp-controller="Productos" asp-action="Index" class="btn btn-secondary shadow-sm">
+            <i class="bi bi-x-circle"></i> Cancelar
+        </a>
+    </div>
+</div>

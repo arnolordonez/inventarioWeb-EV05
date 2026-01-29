@@ -1,0 +1,39 @@
+﻿@model InventarioWEB.Models.Cliente
+@{
+    ViewData["Title"] = "Eliminar Cliente";
+}
+
+<div class="container mt-4">
+
+    <h4 class="text-danger fw-bold mb-3">¿Estás seguro de eliminar este cliente?</h4>
+
+    <div class="card shadow-sm p-3">
+        <h5 class="fw-bold">@Model.Nombre @Model.Apellido</h5>
+        <p><strong>Cédula:</strong> @Model.ID_Cliente</p>
+        <p><strong>Correo:</strong> @Model.Correo</p>
+        <p><strong>Teléfono:</strong> @Model.Telefono</p>
+
+        @if (Model.VIP)
+        {
+                <span class="badge bg-warning text-dark">Cliente VIP</span>
+        }
+        else
+        {
+                <span class="badge bg-secondary">Cliente Normal</span>
+        }
+
+        <hr>
+
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="ID_Cliente" />
+
+            <button type="submit" class="btn btn-danger">
+                <i class="bi bi-trash"></i> Confirmar eliminación
+            </button>
+
+            <a asp-action="Index" class="btn btn-outline-secondary ms-2">
+                Cancelar
+            </a>
+        </form>
+    </div>
+</div>
