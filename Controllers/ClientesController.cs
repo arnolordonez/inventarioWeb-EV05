@@ -238,6 +238,9 @@ namespace InventarioWEB.Controllers
     }
 }
 
+// prueba git
+
+
 /*
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
